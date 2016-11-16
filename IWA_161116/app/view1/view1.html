@@ -1,1 +1,9 @@
-<p>This is the partial for view 1.</p>
+
+{{status}}
+<p> Please sign in </p>
+
+<input type="text" placeholder ="Username" ng-model="user.username">
+<input type="password" placeholder="Password" ng-model="user.password">
+<button ng-click="reset()">Reset</button>
+<button ng-click="login()">Login</button>
+
