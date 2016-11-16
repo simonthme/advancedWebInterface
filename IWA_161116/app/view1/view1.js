@@ -10,20 +10,17 @@ angular.module('myApp.view1', ['ngRoute', 'myApp.authService'])
 }])
 
 .controller('View1Ctrl', ['authService', '$scope', function(auth, $scope) {
- var vm = $scope;
+  var vm = $scope;
+
   vm.status = auth.user.status;
 
   vm.login = function () {
-    auth.login(vm.user)
+    auth.login(vm.user);
   };
 
   vm.reset = function () {
     auth.reset(vm.user);
   };
-
-
-
-
 
 
 }]);

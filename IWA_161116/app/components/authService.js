@@ -11,7 +11,7 @@ function authService($location) {
   var user = {
     username: '',
     password: '',
-    status: 'Logged out',
+    status: 'Logged out'
   };
 
   var userTable = [
