@@ -9,6 +9,17 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', ['$scope', function($scope) {
+  $scope.status = 'Logged out';
+  $scope.user = { name :'',
+  };
+
+  $scope.reset = function () {
+    $scope.name = '';
+    $scope.password = '';
+  }
+
+
+
 
 }]);
