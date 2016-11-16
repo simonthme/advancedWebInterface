@@ -8,11 +8,7 @@ angular.module('myApp.authService', [])
 authService.$inject = ['$location'];
 
 function authService($location) {
-  var user = {
-    username: '',
-    password: '',
-    status: 'Logged out'
-  };
+  var userLogged = {caca:'caca'};
 
   var userTable = [
     {username: 'maite',password:'maite', status:'Logged out'}
@@ -28,14 +24,14 @@ function authService($location) {
 
     var test = false;
     angular.forEach (userTable, function(value, key) {
-        if (value.username === user.username && value.password === user.password && value.status === user.status) {
+
+        if (value.username === user.username && value.password === user.password) {
+          loginComplete(value);
           test = true;
         }
     });
 
-    if (test) {
-      loginComplete();
-    } else {
+    if (!test) {
       loginFailed();
     }
 
@@ -43,21 +39,24 @@ function authService($location) {
       alert('authentification failed');
     }
 
-    function loginComplete() {
-      user.date = new Date();
-      user.status = 'login successful';
+    function loginComplete(loggedInUser) {
+
+      userLogged.date = new Date();
+      userLogged.status = 'login successful';
+      userLogged.username = loggedInUser.username;
+      userLogged.password = loggedInUser.password;
+      userLogged.status = loggedInUser.status;
       $location.path('/view2');
     }
+
   }
 
-  return service = {
-    user:user,
+
+  return {
+    user:userLogged,
     login:login,
     reset:reset
   }
-
-
-
 
 
 }
