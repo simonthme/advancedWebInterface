@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', ['ngRoute', 'myApp.authService'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
@@ -9,15 +9,19 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', function($scope) {
-  $scope.status = 'Logged out';
-  $scope.user = { name :'',
+.controller('View1Ctrl', ['authService', '$scope', function(auth, $scope) {
+ var vm = $scope;
+  vm.status = auth.user.status;
+
+  vm.login = function () {
+    auth.login(vm.user)
   };
 
-  $scope.reset = function () {
-    $scope.name = '';
-    $scope.password = '';
-  }
+  vm.reset = function () {
+    auth.reset(vm.user);
+  };
+
+
 
 
 
