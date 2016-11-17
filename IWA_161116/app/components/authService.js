@@ -5,10 +5,10 @@
 angular.module('myApp.authService', [])
 .factory('authService', authService);
 
-authService.$inject = ['$location'];
+authService.$inject = ['$state'];
 
-function authService($location) {
-  var userLogged = {caca:'caca'};
+function authService($state) {
+  var userLogged = {};
 
   var userTable = [
     {username: 'maite',password:'maite', status:'Logged out'}
@@ -46,7 +46,7 @@ function authService($location) {
       userLogged.username = loggedInUser.username;
       userLogged.password = loggedInUser.password;
       userLogged.status = loggedInUser.status;
-      $location.path('/view2');
+      $state.go('home');
     }
 
   }
