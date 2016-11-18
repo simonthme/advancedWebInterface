@@ -8,8 +8,8 @@ describe('myApp.login module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view1Ctrl = $controller('View1Ctrl');
-      expect(view1Ctrl).toBeDefined();
+      var LoginCtrl = $controller('LoginCtrl');
+      expect(LoginCtrl).toBeDefined();
     }));
 
   });

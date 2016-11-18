@@ -7,4 +7,5 @@ angular.module('myApp.home', ['ngRoute'])
   vm.status = auth.user.status;
   vm.username = auth.user.username;
   vm.date = auth.user.date;
+  vm.device = auth.user.device;
 }]);

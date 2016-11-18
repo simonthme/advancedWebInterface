@@ -45,6 +45,7 @@ function authService($state) {
       userLogged.status = 'login successful';
       userLogged.username = loggedInUser.username;
       userLogged.password = loggedInUser.password;
+      userLogged.device = navigator.userAgent;
       //userLogged.status = loggedInUser.status;
       $state.go('home');
     }
