@@ -5,26 +5,22 @@
 angular.module('myApp.authService', [])
 .factory('authService', authService);
 
-authService.$inject = ['$state'];
+authService.$inject = ['$state', '$window', '$rootScope'];
 
-function authService($state) {
-  var userLogged = {};
+function authService($state, $window, $rootScope) {
+
+  var userLogged = {status:'logged out'};
 
   var userTable = [
-    {username: 'maite',password:'maite', status:'Logged out'}
+    {username: 'maite',password:'maite'},
+    {username: 'simon',password:'simon'}
   ];
-
-   function reset(user) {
-    user.username = '';
-     user.password = '';
-     user.status = 'Logged out'
-  }
 
   function login(user) {
 
     var test = false;
     angular.forEach (userTable, function(value, key) {
-
+      console.log(angular.isDefined(user.username));
         if (value.username === user.username && value.password === user.password) {
           loginComplete(value);
           test = true;
@@ -36,27 +32,44 @@ function authService($state) {
     }
 
     function loginFailed() {
-      alert('authentification failed');
+      $rootScope.$broadcast('loginFailed');
     }
 
     function loginComplete(loggedInUser) {
-
-      userLogged.date = new Date();
+      $window.localStorage.setItem('logged', true);
       userLogged.status = 'login successful';
+      userLogged.date = new Date();
       userLogged.username = loggedInUser.username;
       userLogged.password = loggedInUser.password;
       userLogged.device = navigator.userAgent;
-      //userLogged.status = loggedInUser.status;
+      $window.localStorage.setItem('user', JSON.stringify(userLogged));
+      console.log(status);
       $state.go('home');
     }
 
   }
 
+  function getLogin() {
+     return $window.localStorage.getItem('logged');
+  }
+
+  function getUser() {
+     return JSON.parse($window.localStorage.getItem('user'));
+  }
+
+  function logout() {
+     $window.localStorage.removeItem('logged');
+     $window.localStorage.removeItem('user');
+     userLogged.status = 'Logged Out';
+     $state.go('login');
+  }
 
   return {
-    user:userLogged,
+    userLogged: userLogged,
+    getUser:getUser,
     login:login,
-    reset:reset
+    logout: logout,
+    getLogin: getLogin
   }
 
 

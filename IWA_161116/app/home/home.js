@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute'])
+angular.module('myApp.home', [])
 
-.controller('HomeCtrl', ['$scope', 'authService',  function($scope, auth) {
-  var vm = $scope;
-  vm.status = auth.user.status;
-  vm.username = auth.user.username;
-  vm.date = auth.user.date;
-  vm.device = auth.user.device;
+.controller('HomeCtrl', ['$scope', '$state', 'authService', function($scope, $state, authService) {
+    $state.go('home.profile');
+    $scope.logout = function () {
+        authService.logout();
+  }
+
 }]);
