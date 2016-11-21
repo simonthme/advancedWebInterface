@@ -1,11 +1,11 @@
-'use strict';
+/**
+ * Created by simonthome on 20/11/2016.
+ */
+var homeModule = angular.module('myApp.home', []);
 
-angular.module('myApp.home', [])
-
-.controller('HomeCtrl', ['$scope', '$state', 'authService', function($scope, $state, authService) {
-    $state.go('home.profile');
-    $scope.logout = function () {
-        authService.logout();
-  }
+homeModule.controller('HomeCtrl', ['$scope', 'authService', function ($scope, auth) {
+  var vm = $scope;
+  vm.status = auth.userLogged.status;
+  vm.user = auth.getUser();
 
 }]);

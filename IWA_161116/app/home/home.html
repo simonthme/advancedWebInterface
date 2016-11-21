@@ -1,10 +1,7 @@
-
-<nav class="navbar navbar-collapse">
-  <ul class="nav navbar-nav menuBar">
-    <li ><a ui-sref="home.profile">Profile</a></li>
-    <li ><a ui-sref="home.photo">Photo</a></li>
-    <li ><a ui-sref="home.text">Text</a></li>
-    <li ><a ng-click="logout()">Logout</a></li>
-  </ul>
-</nav>
-<div ui-view=""></div>
+<div>
+    <h1>{{status}}</h1>
+    <h2>
+        Je m'appelle , {{user.username}}<br>
+        Je me suis connecté le {{user.date | date: 'd/M/yy H:mm'}}<br>
+    </h2>
+</div>

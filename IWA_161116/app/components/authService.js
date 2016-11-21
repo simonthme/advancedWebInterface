@@ -44,7 +44,7 @@ function authService($state, $window, $rootScope) {
       userLogged.device = navigator.userAgent;
       $window.localStorage.setItem('user', JSON.stringify(userLogged));
       console.log(status);
-      $state.go('home');
+      $state.go('menu');
     }
 
   }

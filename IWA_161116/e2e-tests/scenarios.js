@@ -29,11 +29,11 @@ describe('my app', function() {
   describe('home', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/home');
+      browser.get('index.html#!/menu');
     });
 
 
-    it('should render home when user navigates to /home', function() {
+    it('should render menu when user navigates to /menu', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/partial for view 2/);
     });

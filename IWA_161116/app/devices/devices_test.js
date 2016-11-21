@@ -3,11 +3,11 @@
  */
 'use strict';
 
-describe('myApp.home module', function() {
+describe('myApp.menu module', function() {
 
     beforeEach(module('myApp.home'));
 
-    describe('home controller', function(){
+    describe('menu controller', function(){
 
         it('should ....', inject(function($controller) {
             //spec body
