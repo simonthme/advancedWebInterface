@@ -1,13 +1,13 @@
+<p id="status">{{status}}</p>
+<div class="center">
 <div id="LoginUser">
-
-{{status}}
-
-<p> Please sign in </p>
-<form>
-    <input type="text" required placeholder ="Username" ng-model="user.username"> <br>
-    <input type="password" required placeholder="Password" ng-model="user.password"> <br>
-    <button type="reset"  class="btn btn-danger" ng-click="reset()">Reset</button><br>
-    <button type="submit" class="btn btn-success"ng-click="login()">Login</button>
-</form>
+    <h3> Please sign in </h3>
+    <form>
+        <input type="text" required placeholder ="Username" ng-model="user.username"> <br>
+        <input type="password" required placeholder="Password" ng-model="user.password"> <br>
+        <button type="reset"  class="btn btn-danger " ng-click="reset()">Reset</button><br>
+        <button type="submit" class="btn btn-primary "ng-click="login()">Login</button>
+    </form>
     <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'danger')" dismiss-on-timeout="3000" close="closeAlert($index)">{{alert.msg}}</div>
+</div>
 </div>
