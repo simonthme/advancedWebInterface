@@ -26,7 +26,10 @@
 
 .menuBar {
   width: 100%;
-  background-color: lightblue;
+
+  background-color: lightgray;
   border-radius: 4px;
-  box-shadow: 10px 10px 5px darkgray;
+}
+a {
+    color : black!important ;
 }
