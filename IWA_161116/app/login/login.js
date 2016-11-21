@@ -22,7 +22,10 @@ angular.module('myApp.login', [])
   };
 
   vm.login = function () {
-      auth.login(vm.user);
+      if(angular.isUndefined(vm.user)){
+        console.log("undefined");
+      }else{auth.login(vm.user);}
+
   };
 
   vm.reset = function () {
