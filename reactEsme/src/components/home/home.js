@@ -2,19 +2,37 @@
  * Created by simonthome on 28/11/2016.
  */
 import React from 'react';
-import { browserHistory, Link} from 'react-router';
-import Profile from '../profile/profile';
+import { LinkContainer } from 'react-router-bootstrap';
+import {browserHistory} from 'react-router';
+
+import { Nav, Navbar, NavItem, Header, Brand } from 'react-bootstrap';
 
 
 export default class Home extends React.Component {
+  logout() {
+    localStorage.removeItem('user');
+    browserHistory.push('/');
+  }
+
+  componentDidMount() {
+    browserHistory.push('/profile');
+  }
+
   render() {
     return (
       <div>
-        <h1>Home</h1>
-        <ul role="nav">
-          <li><Link to="/profile">Profile</Link></li>
-          <li><Link to="/slides">Devices</Link></li>
-        </ul>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              React Esme
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <LinkContainer  to="/profile"><NavItem>Profile</NavItem></LinkContainer>
+            <LinkContainer to="/slides"><NavItem>Devices</NavItem></LinkContainer>
+            <NavItem onClick={this.logout.bind(this)}>Logout</NavItem>
+          </Nav>
+        </Navbar>
         {this.props.children}
       </div>
     )

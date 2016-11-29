@@ -23,12 +23,17 @@ export default class Profile extends React.Component {
       username: user.username
     });
   }
+
+  deleteUser() {
+
+  }
   render() {
 
     return (
       <div>
         <h2>UserName :</h2>
         <h3>{this.state.username}</h3>
+        <Button onClick={this.deleteUser.bind(this)}>Supprimer Utilisateur</Button>
       </div>
     )
   }
