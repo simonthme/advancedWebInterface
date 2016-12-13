@@ -4,22 +4,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Input from './input';
+import {connect} from 'react-redux';
+import * as userAction from '../../actions/userAction';
 import { browserHistory, Link} from 'react-router';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       alertVisible : false,
-      users: [
-        {
-          username: 'simon', password: 'simon'
-        },
-        {
-          username: 'maite', password: 'maite'
-        }
-      ],
       inputs : [
         {name: 'username', type: 'text', placeholder: 'nom utilisateur'},
         {name: 'password', type: 'password', placeholder: 'mot de passe'},
@@ -28,6 +22,10 @@ export default class Login extends React.Component {
       username: '',
     }
   }
+  componentDidMount() {
+    console.log(this.props.users);
+  }
+
   handleAlertDismiss() {
     this.setState({alertVisible: false});
   }
@@ -40,21 +38,21 @@ export default class Login extends React.Component {
       });
   }
 
-  onClick(username, password) {
-
-    let loginSuccess = false;
-
-    if (username !== '' && password !== '' && typeof username !== 'undefined' && typeof password !== 'undefined') {
-      this.state.users.map((user) => {
+  onClick() {
+    let alertVisible = false;
+    if (this.state.username !== '' && this.state.password !== '' && typeof this.state.username !== 'undefined' && typeof this.state.password !== 'undefined') {
+      this.props.users.map((user, index) => {
         if (this.state.username === user.username && this.state.password === user.password) {
-          loginSuccess = true;
+
+          this.props.loginUser(index);
           browserHistory.push('/home');
-          localStorage.setItem('user', JSON.stringify(user));
+        } else {
+          alertVisible = true;
         }
       });
     }
 
-    if(!loginSuccess) {
+    if(alertVisible) {
       this.setState({
         alertVisible: true
       })
@@ -84,7 +82,7 @@ export default class Login extends React.Component {
         }
         </Form>
       <Button style={{marginTop: 20, width: '40%'}} bsStyle="success" onClick={this.onClick.bind(this, this.state.username, this.state.password)}>Login</Button>
-        <Link to={{ pathname: '/register', query: { userArray: this.state.users} }}>Créer un compte</Link>
+        <Link to='/register'>Créer un compte</Link>
 
       </div>
         {showAlert()}
@@ -93,3 +91,22 @@ export default class Login extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    // You can now say this.props.books
+    users: state.users
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // You can now say this.props.createBook
+    loginUser: user => dispatch(userAction.loginUser(user))
+  }
+};
+
+// Maps actions to props
+
+// Use connect to put them together
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

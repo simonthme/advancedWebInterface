@@ -1,8 +1,8 @@
 /**
  * Created by simonthome on 23/11/2016.
  */
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   devtool: 'inline-source-map',

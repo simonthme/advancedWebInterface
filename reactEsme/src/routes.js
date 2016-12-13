@@ -19,8 +19,8 @@ export default class Root extends Component {
     return (
       <Router history={this.props.history}>
         <Route path="/" component={App}/>
-        <Route path="/register" component={(props, state, params) => <Register {...props} />}/>
-        <Route path="/home" component={(props, state, params) => <Home {...props} />}>
+        <Route path="/register" component={Register}/>
+        <Route path="/home" component={Home}>
           <Route path="/profile" component={Profile}/>
           <Route path="/slides" component={Slides}/>
         </Route>
